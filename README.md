@@ -5,6 +5,11 @@ This Script Originally Was Taken From Russian Php Script "load script" and My Se
 
 
 Installation
-++++++++++++++++++++++++++++++
-Just Upload in All Files and Edit "inc/config.php" With Your Web Site Details.
+================
+Just Upload in All Files and Edit "inc/config.php" With Your Web Site Details. 
 For Video Thumbnails Ffmpeg Need. 
+================
+
+Permissions
+===============
+change 777 permission to "count" Folder.
