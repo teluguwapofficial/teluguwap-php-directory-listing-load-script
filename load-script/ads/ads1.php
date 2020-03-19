@@ -1,0 +1,1 @@
+<a href=''>Ad1:- Paste Ad1 Code or Snippet in ads/ads1.php</a>
