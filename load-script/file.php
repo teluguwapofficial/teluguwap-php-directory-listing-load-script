@@ -97,25 +97,33 @@ print 'Desription: '.$descrip.'<br />';
 
 if($r == 'mp3')
 {
-include $mp3;
-$id3 = new MP3_Id();
-$result = $id3->read($file);
-$result = $id3->study();
-$bitrate = $id3->getTag('bitrate') OR $bitrate='';
-print 'Title: '.iconv('windows-1251','UTF-8',$id3->getTag('name')).'<br/>';
-if($id3->getTag('genre'))
-{print 'Genere: '.$id3->getTag('genre').'<br/>';}
-if($id3->getTag('artists'))
-{print 'Artist: '.iconv('windows-1251','UTF-8',$id3->getTag('artists')).'<br/>';}
-// print 'Size: '.round($id3->getTag('filesize')/1024).' Kb<br/>';
-
-print 'Type: '.r($file).'<br/>
-Bitrate : '.$bitrate.' Kbps ('.$id3->getTag('mode').')<br/>';
-if($id3->getTag('year'))
-{print 'Year: '.$id3->getTag('year').'<br/>';}
-print 'Duration: '.$id3->getTag('length').' Min<br/>';
+     $filesize = filesize($file);
+     $mpfile = fopen($file, "r");
+     fseek($mpfile, -128, SEEK_END);
+     
+     $tag = fread($mpfile, 3);
+     
+     
+     if($tag == "TAG")
+     {
+         $data["song"] = trim(fread($mpfile, 30));
+         $data["artist"] = trim(fread($mpfile, 30));
+         $data["album"] = trim(fread($mpfile, 30));
+         $data["year"] = trim(fread($mpfile, 4));
+         $data["comment"] = trim(fread($mpfile, 30));
+// $data["genre"] = $genre_arr[ord(trim(fread($mpfile, 1)))];
+         
+     }
+     else
+         die("MP3 file does not have any ID3 tag!");
+     
+     fclose($file);
+     
+     while(list($key, $value) = each($data))
+     {
+         print("$key: $value<br>\r\n");    
+     }
 }
-
 if($r!='jpg' AND $r!='gif' AND $r!='png')
 {
 print '<img src="./images/down.gif" alt=""/> <strong><a href="'.$file.'">File Download</a></strong><br/>';
