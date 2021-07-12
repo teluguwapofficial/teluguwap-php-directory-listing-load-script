@@ -13,11 +13,6 @@ Video Thumnail
 for video thumnails ffmpeg need. 
 in shared server You Can Use ffmpeg build from https://www.johnvansickle.com/ffmpeg/
 
-Mp3 Tags
-====
-for mp3 tags id3 need. 
-for installtion id3 in LINUX vps/dedicated servers command "sudo yum install id3"
-
 Permissions
 ====
 change 777 permission to "count" Folder.
